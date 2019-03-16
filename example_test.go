@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/orijtech/youtube"
+	"github.com/jostyee/youtube"
 )
 
 func ExampleSearch() {
