@@ -89,6 +89,8 @@ type SearchParam struct {
 	// RelatedToVideoId is the id for whose
 	// related videos you'd like returned
 	RelatedToVideoId string `json:"related_to_video_id"`
+
+	ChannelID string `json:"channel_id"`
 }
 
 type SearchPage struct {
@@ -201,10 +203,14 @@ func (c *Client) Search(ctx context.Context, param *SearchParam) (chan *SearchPa
 		maxPageIndex := param.MaxPage
 		maxResultsPerPage := param.MaxResultsPerPage
 		maxRequestedItems := param.MaxRequestedItems
+		channelID := param.ChannelID
 
 		req := c.service.Search.List("id,snippet").Q(query)
 		if maxResultsPerPage > 0 {
 			req = req.MaxResults(int64(maxResultsPerPage))
+		}
+		if channelID != "" {
+			req = req.ChannelId(channelID)
 		}
 		req = req.Context(ctx)
 
