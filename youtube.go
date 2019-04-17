@@ -52,7 +52,7 @@ func NewWithKey(apiKey string) (*Client, error) {
 	if apiKey == "" {
 		return nil, errEmptyAPIKey
 	}
-	return clientWithKey(envResolvedKey)
+	return clientWithKey(apiKey)
 }
 
 func NewWithHTTPClient(hc *http.Client) (*Client, error) {
